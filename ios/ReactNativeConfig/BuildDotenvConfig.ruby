@@ -65,6 +65,12 @@ EOF
 path = File.join(ENV["SYMROOT"], "GeneratedDotEnv.m")
 File.open(path, "w") { |f| f.puts template }
 
+#write it so that Pod can return it
+if ENV["PODS_TARGET_SRCROOT"]
+  path = File.join(ENV["PODS_TARGET_SRCROOT"], "ios/ReactNativeConfig", "GeneratedDotEnv.m")
+  File.open(path, "w") { |f| f.puts template }
+end
+
 # create header file with defines for the Info.plist preprocessor
 info_plist_defines_objc = dotenv.map { |k, v| %Q(#define __RN_CONFIG_#{k}  #{v}) }.join("\n")
 

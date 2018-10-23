@@ -14,10 +14,17 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "7.0"
   s.tvos.deployment_target = "9.0"
 
-  s.source       = { :git => "https://github.com/luggit/react-native-config.git", :tag => "#{s.version}" }
 
-  s.source_files  = "ios/**/*.{h,m}"
+  s.source       = { :git => "https://github.com/luggit/react-native-config.git", :tag => "v#{s.version}" }
+
+  s.source_files  = "ios/**/*.{h,m,ruby}"
   s.requires_arc = true
+
+  s.script_phase = {
+    :name => 'BuildDotenvConfig.ruby',
+    :script => '$PODS_TARGET_SRCROOT/ios/ReactNativeConfig/BuildDotenvConfig.ruby',
+    :execution_position => :before_compile
+  }
 
   s.dependency "React"
 end
