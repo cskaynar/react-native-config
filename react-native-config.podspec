@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.script_phase = {
-    :name => 'BuildDotenvConfig.ruby',
+    :name => 'Run BuildDotenvConfig.ruby',
     :script => '$PODS_TARGET_SRCROOT/ios/ReactNativeConfig/BuildDotenvConfig.ruby',
     :execution_position => :before_compile
   }
